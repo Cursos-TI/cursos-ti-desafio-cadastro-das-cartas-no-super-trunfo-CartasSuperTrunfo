@@ -1,0 +1,239 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Estrutura para representar uma carta
+struct Carta {
+    char nome[50];
+    int velocidade;
+    int aceleracao;
+    int potencia;
+    int peso;
+    int tracao;
+};
+
+// Função para exibir os detalhes de uma carta
+void exibirCarta(struct Carta c) {
+    printf("\n%s:\n", c.nome);
+    printf("Velocidade: %d km/h\n", c.velocidade);
+    printf("Aceleracao: 0-100 km/h em %d segundos\n", c.aceleracao);
+    printf("Potencia: %d HP\n", c.potencia);
+    printf("Peso: %d kg\n", c.peso);
+    printf("Tracao: %d%%\n", c.tracao);
+}
+
+// Função principal
+int main() {
+    srand(time(0)); // Inicializa o gerador de números aleatórios
+    
+    // Baralho de cartas
+    struct Carta baralho[6] = {
+        {"Ferrari", 320, 3, 800, 1200, 95},
+        {"Porsche", 300, 4, 750, 1100, 90},
+        {"Lamborghini", 330, 2, 850, 1300, 97},
+        {"McLaren", 310, 3, 820, 1150, 93},
+        {"Bugatti", 350, 2, 1000, 1400, 98},
+        {"Aston Martin", 290, 5, 700, 1250, 88}
+    };
+    
+    int opcao;
+    
+    printf("Bem-vindo ao Super Trunfo!\n");
+    
+    do {
+        printf("\nMenu Principal:\n");
+        printf("1 - Jogar (Desafio 1 - Comparacao simples)\n");
+        printf("2 - Jogar (Desafio 2 - Multiplos atributos)\n");
+        printf("3 - Jogar (Desafio 3 - Dois atributos)\n");
+        printf("4 - Sair\n");
+        printf("Escolha: ");
+        scanf("%d", &opcao);
+        
+        if(opcao == 4) break;
+        
+        // Seleciona duas cartas aleatórias
+        int idx1 = rand() % 6;
+        int idx2;
+        do {
+            idx2 = rand() % 6;
+        } while(idx2 == idx1);
+        
+        struct Carta carta1 = baralho[idx1];
+        struct Carta carta2 = baralho[idx2];
+        
+        exibirCarta(carta1);
+        exibirCarta(carta2);
+        
+        switch(opcao) {
+            case 1: {
+                // Desafio 1 - Comparação simples
+                int atributo;
+                printf("\nEscolha um atributo (1-Velocidade, 2-Aceleracao, 3-Potencia, 4-Peso, 5-Tracao): ");
+                scanf("%d", &atributo);
+                
+                int valor1, valor2;
+                char* nomeAtributo;
+                
+                switch(atributo) {
+                    case 1: 
+                        valor1 = carta1.velocidade; 
+                        valor2 = carta2.velocidade; 
+                        nomeAtributo = "Velocidade";
+                        break;
+                    case 2: 
+                        valor1 = carta1.aceleracao; 
+                        valor2 = carta2.aceleracao; 
+                        nomeAtributo = "Aceleracao";
+                        break;
+                    case 3: 
+                        valor1 = carta1.potencia; 
+                        valor2 = carta2.potencia; 
+                        nomeAtributo = "Potencia";
+                        break;
+                    case 4: 
+                        valor1 = carta1.peso; 
+                        valor2 = carta2.peso; 
+                        nomeAtributo = "Peso";
+                        // Para peso, menor valor vence
+                        if(valor1 < valor2) {
+                            printf("\n%s vence em %s (%d vs %d)!\n", carta1.nome, nomeAtributo, valor1, valor2);
+                        } else if(valor2 < valor1) {
+                            printf("\n%s vence em %s (%d vs %d)!\n", carta2.nome, nomeAtributo, valor2, valor1);
+                        } else {
+                            printf("\nEmpate em %s (%d)!\n", nomeAtributo, valor1);
+                        }
+                        continue;
+                    case 5: 
+                        valor1 = carta1.tracao; 
+                        valor2 = carta2.tracao; 
+                        nomeAtributo = "Tracao";
+                        break;
+                    default: 
+                        printf("Atributo invalido!\n");
+                        continue;
+                }
+                
+                if(valor1 > valor2) {
+                    printf("\n%s vence em %s (%d vs %d)!\n", carta1.nome, nomeAtributo, valor1, valor2);
+                } else if(valor2 > valor1) {
+                    printf("\n%s vence em %s (%d vs %d)!\n", carta2.nome, nomeAtributo, valor2, valor1);
+                } else {
+                    printf("\nEmpate em %s (%d)!\n", nomeAtributo, valor1);
+                }
+                break;
+            }
+            
+            case 2: {
+                // Desafio 2 - Múltiplos atributos com switch
+                int atributo;
+                printf("\nEscolha um atributo (1-Velocidade, 2-Aceleracao, 3-Potencia, 4-Peso, 5-Tracao): ");
+                scanf("%d", &atributo);
+                
+                switch(atributo) {
+                    case 1: {
+                        int diff = carta1.velocidade - carta2.velocidade;
+                        printf("\n%s: %d km/h vs %s: %d km/h\n", carta1.nome, carta1.velocidade, carta2.nome, carta2.velocidade);
+                        printf(diff > 0 ? "%s vence em velocidade!\n" : 
+                               diff < 0 ? "%s vence em velocidade!\n" : "Empate em velocidade!\n", 
+                               diff > 0 ? carta1.nome : carta2.nome);
+                        break;
+                    }
+                    case 2: {
+                        int diff = carta1.aceleracao - carta2.aceleracao;
+                        printf("\n%s: 0-100 em %d s vs %s: 0-100 em %d s\n", carta1.nome, carta1.aceleracao, carta2.nome, carta2.aceleracao);
+                        printf(diff < 0 ? "%s vence em aceleracao!\n" : 
+                               diff > 0 ? "%s vence em aceleracao!\n" : "Empate em aceleracao!\n", 
+                               diff < 0 ? carta1.nome : carta2.nome);
+                        break;
+                    }
+                    case 3: {
+                        int diff = carta1.potencia - carta2.potencia;
+                        printf("\n%s: %d HP vs %s: %d HP\n", carta1.nome, carta1.potencia, carta2.nome, carta2.potencia);
+                        printf(diff > 0 ? "%s vence em potencia!\n" : 
+                               diff < 0 ? "%s vence em potencia!\n" : "Empate em potencia!\n", 
+                               diff > 0 ? carta1.nome : carta2.nome);
+                        break;
+                    }
+                    case 4: {
+                        int diff = carta1.peso - carta2.peso;
+                        printf("\n%s: %d kg vs %s: %d kg\n", carta1.nome, carta1.peso, carta2.nome, carta2.peso);
+                        printf(diff < 0 ? "%s vence em peso!\n" : 
+                               diff > 0 ? "%s vence em peso!\n" : "Empate em peso!\n", 
+                               diff < 0 ? carta1.nome : carta2.nome);
+                        break;
+                    }
+                    case 5: {
+                        int diff = carta1.tracao - carta2.tracao;
+                        printf("\n%s: %d%% vs %s: %d%%\n", carta1.nome, carta1.tracao, carta2.nome, carta2.tracao);
+                        printf(diff > 0 ? "%s vence em tracao!\n" : 
+                               diff < 0 ? "%s vence em tracao!\n" : "Empate em tracao!\n", 
+                               diff > 0 ? carta1.nome : carta2.nome);
+                        break;
+                    }
+                    default:
+                        printf("Atributo invalido!\n");
+                }
+                break;
+            }
+            
+            case 3: {
+                // Desafio 3 - Comparação com dois atributos
+                int atributo1, atributo2;
+                printf("\nEscolha dois atributos diferentes (1-Velocidade, 2-Aceleracao, 3-Potencia, 4-Peso, 5-Tracao)\n");
+                printf("Primeiro atributo: ");
+                scanf("%d", &atributo1);
+                printf("Segundo atributo: ");
+                scanf("%d", &atributo2);
+                
+                if(atributo1 == atributo2) {
+                    printf("Escolha atributos diferentes!\n");
+                    break;
+                }
+                
+                // Comparação usando operador ternário
+                int resultado1 = 
+                    (atributo1 == 1) ? (carta1.velocidade - carta2.velocidade) :
+                    (atributo1 == 2) ? (carta2.aceleracao - carta1.aceleracao) : // Invertido porque menor tempo é melhor
+                    (atributo1 == 3) ? (carta1.potencia - carta2.potencia) :
+                    (atributo1 == 4) ? (carta2.peso - carta1.peso) : // Invertido porque menor peso é melhor
+                    (atributo1 == 5) ? (carta1.tracao - carta2.tracao) : 0;
+                
+                int resultado2 = 
+                    (atributo2 == 1) ? (carta1.velocidade - carta2.velocidade) :
+                    (atributo2 == 2) ? (carta2.aceleracao - carta1.aceleracao) : // Invertido porque menor tempo é melhor
+                    (atributo2 == 3) ? (carta1.potencia - carta2.potencia) :
+                    (atributo2 == 4) ? (carta2.peso - carta1.peso) : // Invertido porque menor peso é melhor
+                    (atributo2 == 5) ? (carta1.tracao - carta2.tracao) : 0;
+                
+                printf("\nResultado da comparacao:\n");
+                
+                if(resultado1 > 0 && resultado2 > 0) {
+                    printf("%s vence em ambos atributos!\n", carta1.nome);
+                }
+                else if(resultado1 < 0 && resultado2 < 0) {
+                    printf("%s vence em ambos atributos!\n", carta2.nome);
+                }
+                else if(resultado1 == 0 && resultado2 == 0) {
+                    printf("Empate em ambos atributos!\n");
+                }
+                else {
+                    if(resultado1 > 0 || resultado2 > 0) {
+                        printf("%s vence em pelo menos um atributo!\n", carta1.nome);
+                    }
+                    if(resultado1 < 0 || resultado2 < 0) {
+                        printf("%s vence em pelo menos um atributo!\n", carta2.nome);
+                    }
+                }
+                break;
+            }
+            
+            default:
+                printf("Opcao invalida!\n");
+        }
+        
+    } while(opcao != 4);
+    
+    printf("Obrigado por jogar Super Trunfo!\n");
+    return 0;
+}
