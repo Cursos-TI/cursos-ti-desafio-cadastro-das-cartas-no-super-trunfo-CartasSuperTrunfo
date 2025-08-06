@@ -1,0 +1,65 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "cppbuild",
+      "label": "C/C++: gcc.exe build active file",
+      "command": "C:/msys64/ucrt64/bin/gcc.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "-Wall",
+        "-Wextra",
+        "-lm",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "options": {
+        "cwd": "${fileDirname}",
+        "env": {
+          "PATH": "C:\\msys64\\ucrt64\\bin;${env:PATH}",
+          "LANG": "pt_BR.UTF-8"
+        },
+        "shell": {
+          "executable": "cmd.exe",
+          "args": [
+            "/C"
+          ]
+        }
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "Compilador: MSYS2 GCC"
+    },
+    {
+      "type": "cppbuild",
+      "label": "C/C++: g++ build active file",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fdiagnostics-color=always",
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "detail": "Compilador: /usr/bin/g++"
+    }
+  ]
+}

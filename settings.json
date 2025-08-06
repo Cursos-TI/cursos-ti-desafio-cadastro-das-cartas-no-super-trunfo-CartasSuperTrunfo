@@ -1,0 +1,41 @@
+{
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",  // Use official C/C++ extension
+        "editor.formatOnSave": true,
+        "C_Cpp.formatting": "clangFormat",  // Explicitly enable clang-format
+        "C_Cpp.clang_format_path": "C:/Program Files/LLVM/bin/clang-format.exe"  // Full path to executable
+    },
+    "files.associations": {
+        "*.h": "c",
+        "*.c": "c"
+    },
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.formatting": "clangFormat",
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.autocomplete": "default",
+    "C_Cpp.dimInactiveRegions": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+        80
+    ],
+    "clang-format.style": "file",
+    "editor.renderWhitespace": "all",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "C_Cpp.default.includePath": [
+        "${default}",
+        "C:/msys64/ucrt64/include"
+    ],
+    "C_Cpp.default.compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+    "C_Cpp.default.intelliSenseMode": "windows-gcc-x64",
+    "code-runner.executorMap": {
+        "c": "cd $dir && C:\\msys64\\ucrt64\\bin\\gcc.exe $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.preserveFocus": false,
+    "code-runner.clearPreviousOutput": true,
+    "code-runner.ignoreSelection": true,
+    "yaml.schemaStore.enable": false
+}

@@ -1,0 +1,31 @@
+# Arquivos compilados
+*.exe
+*.out
+*.app
+*.o
+*.obj
+
+# Arquivos de debug
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Arquivos temporários
+*.tmp
+*.temp
+*~
+
+# Arquivos de IDE/Editor
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/c_cpp_properties.json
+.idea/
+*.swp
+*.swo
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
