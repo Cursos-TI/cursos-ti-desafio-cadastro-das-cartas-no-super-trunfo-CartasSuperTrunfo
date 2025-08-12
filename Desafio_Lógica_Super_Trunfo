@@ -1,0 +1,178 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    // Dados já cadastrados
+    char nome1[] = "Brasil";
+    char nome2[] = "Argentina";
+    int populacao1 = 213000000, populacao2 = 45000000;
+    float area1 = 8515767.0, area2 = 2780400.0;
+    float pib1 = 1868.0, pib2 = 491.0;
+    int pontos1 = 30, pontos2 = 20;
+
+    float densidade1 = populacao1 / area1;
+    float densidade2 = populacao2 / area2;
+
+    int opcao;
+
+    // Menu interativo
+    printf("=== SUPER TRUNFO - COMPARADOR ===\n");
+    printf("Escolha o atributo para comparar:\n");
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Pontos Turísticos\n");
+    printf("5. Densidade Demográfica\n");
+    printf("Escolha uma opção: ");
+    scanf("%d", &opcao);
+
+    printf("\nComparando %s e %s:\n", nome1, nome2);
+
+    switch (opcao) {
+        case 1:
+            printf("População:\n%s: %d\n%s: %d\n", nome1, populacao1, nome2, populacao2);
+            if (populacao1 > populacao2)
+                printf("Resultado: %s venceu!\n", nome1);
+            else if (populacao2 > populacao1)
+                printf("Resultado: %s venceu!\n", nome2);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 2:
+            printf("Área:\n%s: %.2f km²\n%s: %.2f km²\n", nome1, area1, nome2, area2);
+            if (area1 > area2)
+                printf("Resultado: %s venceu!\n", nome1);
+            else if (area2 > area1)
+                printf("Resultado: %s venceu!\n", nome2);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 3:
+            printf("PIB:\n%s: R$ %.2f bilhões\n%s: R$ %.2f bilhões\n", nome1, pib1, nome2, pib2);
+            if (pib1 > pib2)
+                printf("Resultado: %s venceu!\n", nome1);
+            else if (pib2 > pib1)
+                printf("Resultado: %s venceu!\n", nome2);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 4:
+            printf("Pontos Turísticos:\n%s: %d\n%s: %d\n", nome1, pontos1, nome2, pontos2);
+            if (pontos1 > pontos2)
+                printf("Resultado: %s venceu!\n", nome1);
+            else if (pontos2 > pontos1)
+                printf("Resultado: %s venceu!\n", nome2);
+            else
+                printf("Empate!\n");
+            break;
+
+        case 5:
+            printf("Densidade Demográfica:\n%s: %.2f hab/km²\n%s: %.2f hab/km²\n", nome1, densidade1, nome2, densidade2);
+            if (densidade1 < densidade2)
+                printf("Resultado: %s venceu!\n", nome1);  // menor vence
+            else if (densidade2 < densidade1)
+                printf("Resultado: %s venceu!\n", nome2);
+            else
+                printf("Empate!\n");
+            break;
+
+        default:
+            printf("Opção inválida. Tente novamente.\n");
+            break;
+    }
+
+    return 0;
+}
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    // Dados das cartas
+    char nome1[] = "Brasil";
+    char nome2[] = "Argentina";
+
+    int populacao1 = 213000000, populacao2 = 45000000;
+    float area1 = 8515767.0, area2 = 2780400.0;
+    float pib1 = 1868.0, pib2 = 491.0;
+    int pontos1 = 30, pontos2 = 20;
+
+    float densidade1 = populacao1 / area1;
+    float densidade2 = populacao2 / area2;
+
+    int opcao1, opcao2;
+    float valor1_cart1 = 0, valor1_cart2 = 0;
+    float valor2_cart1 = 0, valor2_cart2 = 0;
+    float soma1 = 0, soma2 = 0;
+
+    // Exibe menu inicial
+    printf("=== SUPER TRUNFO - NÍVEL MESTRE ===\n");
+    printf("Atributos disponíveis:\n");
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Pontos Turísticos\n");
+    printf("5. Densidade Demográfica\n");
+
+    // Primeira escolha
+    printf("Escolha o 1º atributo para comparar: ");
+    scanf("%d", &opcao1);
+
+    // Segunda escolha (evita repetir)
+    do {
+        printf("Escolha o 2º atributo (diferente do primeiro): ");
+        scanf("%d", &opcao2);
+        if (opcao2 == opcao1) {
+            printf("Você já escolheu esse atributo! Tente outro.\n");
+        }
+    } while (opcao2 == opcao1);
+
+    // Função auxiliar (podia ser função, mas vamos manter simples)
+    float getValor(int op, int carta) {
+        switch (op) {
+            case 1: return carta == 1 ? populacao1 : populacao2;
+            case 2: return carta == 1 ? area1 : area2;
+            case 3: return carta == 1 ? pib1 : pib2;
+            case 4: return carta == 1 ? pontos1 : pontos2;
+            case 5: return carta == 1 ? densidade1 : densidade2;
+            default: return 0;
+        }
+    }
+
+    // Pega os valores dos atributos
+    valor1_cart1 = getValor(opcao1, 1);
+    valor1_cart2 = getValor(opcao1, 2);
+    valor2_cart1 = getValor(opcao2, 1);
+    valor2_cart2 = getValor(opcao2, 2);
+
+    // Exibe os atributos escolhidos
+    printf("\nComparação entre %s e %s:\n", nome1, nome2);
+
+    char* nomes[6] = {"", "População", "Área", "PIB", "Pontos Turísticos", "Densidade Demográfica"};
+
+    printf("\nAtributo 1: %s\n%s: %.2f\n%s: %.2f\n", nomes[opcao1], nome1, valor1_cart1, nome2, valor1_cart2);
+    printf("Atributo 2: %s\n%s: %.2f\n%s: %.2f\n", nomes[opcao2], nome1, valor2_cart1, nome2, valor2_cart2);
+
+    // Lógica de comparação com operador ternário (densidade inverte)
+    float resultado1 = (opcao1 == 5) ? (valor1_cart1 < valor1_cart2 ? 1 : 0) : (valor1_cart1 > valor1_cart2 ? 1 : 0);
+    float resultado2 = (opcao2 == 5) ? (valor2_cart1 < valor2_cart2 ? 1 : 0) : (valor2_cart1 > valor2_cart2 ? 1 : 0);
+
+    // Soma dos atributos (independente de quem ganhou cada)
+    soma1 = valor1_cart1 + valor2_cart1;
+    soma2 = valor1_cart2 + valor2_cart2;
+
+    printf("\nSoma dos atributos:\n%s: %.2f\n%s: %.2f\n", nome1, soma1, nome2, soma2);
+
+    if (soma1 > soma2)
+        printf("\nResultado Final: %s venceu!\n", nome1);
+    else if (soma2 > soma1)
+        printf("\nResultado Final: %s venceu!\n", nome2);
+    else
+        printf("\nResultado Final: Empate!\n");
+
+    return 0;
+}
