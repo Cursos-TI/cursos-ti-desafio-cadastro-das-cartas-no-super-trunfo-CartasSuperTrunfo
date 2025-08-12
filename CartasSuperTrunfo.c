@@ -1,22 +1,49 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo - Países
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-//Teste larissa
+typedef struct {
+    char codigo[4];
+    int populacao;
+    float area;
+    float pib;
+    int pontosTuristicos;
+} Cidade;
 
-int main() {
-    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
-    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
+int main(){
+    Cidade cidades[32]; 
+    char estados[] = "ABCDEFGH";
+    int i, j, index = 0;
     
-    // Cadastro das Cartas:
-    // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
-    // Solicite ao usuário que insira as informações de cada cidade, como o código, nome, população, área, etc.
-    
-    // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
+    printf("=== cadastro de cidades ===\n");
 
-    return 0;
+for(i = 0; i < 8; i++){
+    for (j = 1; j <= 4; j++){
+    sprintf(cidades[index].codigo, "%c%d", estados[i], j);
+    printf("\nCadastro da cidade %s: \n", cidades[index].codigo);
+
+    printf("População:");
+    scanf("%d", &cidades[index].populacao);
+
+    printf("Área (km²):");
+    scanf("%f", &cidades[index].area);
+
+    printf("PIB:");
+    scanf("%f", &cidades[index].pib);
+
+    printf("Pontos turísticos:");
+    scanf("%d", &cidades[index].pontosTuristicos);
+
+    index++;
+    
+    }
+}
+printf("\n===== CIDADES CADASTRADAS =====\n");
+for (i = 0; i < 32; i++) {
+    printf("\nCodigo: %s\n", cidades[i].codigo);
+    printf("População: %d habitantes\n", cidades[i].populacao);
+    printf("Área: %.2f km²\n", cidades[i].area);
+    printf("PIB: %.2f bilhões\n", cidades[i].pib);
+    printf("Pontos turísticcos: %d\n", cidades[i].pontosTuristicos);
+  }
+
+  return 0;
 }
