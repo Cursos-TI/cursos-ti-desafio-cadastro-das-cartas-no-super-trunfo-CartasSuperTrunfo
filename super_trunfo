@@ -1,0 +1,160 @@
+#include <stdio.h>
+#include <string.h>
+
+
+// Desafio Super Trunfo - Países
+// Tema 1 - Cadastro das Cartas
+// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
+// Siga os comentários para implementar cada parte do desafio.
+
+#define TOTAL_CARTAS 32
+
+// Estrutura simples para guardar as informações da cidade
+struct Cidade {
+    char codigo[4];
+    int populacao;
+    float area;
+    float pib;
+    int pontosTuristicos;
+    float densidade;
+    float pibPerCapita;
+    float superPoder;
+};
+
+
+
+int main() {
+    // Sugestão: Defina variáveis separadas para cada atributo da cidade.
+    // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
+    
+    struct Cidade cidades[TOTAL_CARTAS];
+    int i;
+    char estado = 'A';
+
+    printf("Super Trunfo - Cidades\n");
+
+    // Cadastro das cidades
+    for (i = 0; i < TOTAL_CARTAS; i++) {
+        // Gerar o código da cidade (A01, A02, ..., H04)
+        sprintf(cidades[i].codigo, "%c%02d", estado, (i % 4) + 1);
+        if ((i + 1) % 4 == 0) {
+            estado++;
+        }
+
+
+     // Pedir os dados ao usuário
+        printf("\nCadastro da cidade %s:\n", cidades[i].codigo);
+        printf("Populacao: ");
+        scanf("%d", &cidades[i].populacao);
+        printf("Area (km2): ");
+        scanf("%f", &cidades[i].area);
+        printf("PIB (em bilhoes): ");
+        scanf("%f", &cidades[i].pib);
+        printf("Numero de pontos turisticos: ");
+        scanf("%d", &cidades[i].pontosTuristicos);    
+
+
+    // Calcular propriedades
+        if (cidades[i].area > 0) {
+            cidades[i].densidade = cidades[i].populacao / cidades[i].area;
+        } else {
+            cidades[i].densidade = 0;
+        }
+
+        if (cidades[i].populacao > 0) {
+            cidades[i].pibPerCapita = (cidades[i].pib * 1000000000.0) / cidades[i].populacao;
+        } else {
+            cidades[i].pibPerCapita = 0;
+        }
+
+        cidades[i].superPoder = cidades[i].populacao + cidades[i].area +
+                                (cidades[i].pib * 1000) + cidades[i].pontosTuristicos +
+                                cidades[i].pibPerCapita + (100000.0 / (cidades[i].densidade + 1));
+    }
+
+    // Mostrar os dados de todas as cidades
+    printf("\n--- CIDADES CADASTRADAS ---\n");
+    for (i = 0; i < TOTAL_CARTAS; i++) {
+        printf("\nCodigo: %s\n", cidades[i].codigo);
+        printf("Populacao: %d\n", cidades[i].populacao);
+        printf("Area: %.2f km2\n", cidades[i].area);
+        printf("PIB: %.2f bilhoes\n", cidades[i].pib);
+        printf("Pontos turisticos: %d\n", cidades[i].pontosTuristicos);
+        printf("Densidade: %.2f hab/km2\n", cidades[i].densidade);
+        printf("PIB per capita: %.2f\n", cidades[i].pibPerCapita);
+        printf("Super poder: %.2f\n", cidades[i].superPoder);
+    }
+
+    // Comparar duas cartas
+    char cod1[4], cod2[4];
+    printf("\nDeseja comparar duas cidades? (s/n): ");
+    char resposta;
+    scanf(" %c", &resposta);
+
+    if (resposta == 's' || resposta == 'S') {
+        printf("Digite o codigo da primeira cidade: ");
+        scanf("%s", cod1);
+        printf("Digite o codigo da segunda cidade: ");
+        scanf("%s", cod2);
+
+        struct Cidade *c1 = NULL;
+        struct Cidade *c2 = NULL;
+
+        // Procurar as cidades pelo código
+        for (i = 0; i < TOTAL_CARTAS; i++) {
+            if (strcmp(cidades[i].codigo, cod1) == 0) {
+                c1 = &cidades[i];
+            }
+            if (strcmp(cidades[i].codigo, cod2) == 0) {
+                c2 = &cidades[i];
+            }
+        }
+
+        if (c1 != NULL && c2 != NULL) {
+            printf("\n--- COMPARACAO ---\n");
+
+            printf("Populacao: ");
+            if (c1->populacao > c2->populacao) printf("%s vence\n", c1->codigo);
+            else if (c2->populacao > c1->populacao) printf("%s vence\n", c2->codigo);
+            else printf("Empate\n");
+
+            printf("Area: ");
+            if (c1->area > c2->area) printf("%s vence\n", c1->codigo);
+            else if (c2->area > c1->area) printf("%s vence\n", c2->codigo);
+            else printf("Empate\n");
+
+            printf("PIB: ");
+            if (c1->pib > c2->pib) printf("%s vence\n", c1->codigo);
+            else if (c2->pib > c1->pib) printf("%s vence\n", c2->codigo);
+            else printf("Empate\n");
+
+            printf("Pontos Turisticos: ");
+            if (c1->pontosTuristicos > c2->pontosTuristicos) printf("%s vence\n", c1->codigo);
+            else if (c2->pontosTuristicos > c1->pontosTuristicos) printf("%s vence\n", c2->codigo);
+            else printf("Empate\n");
+
+            printf("Densidade: ");
+            if (c1->densidade < c2->densidade) printf("%s vence (menor densidade)\n", c1->codigo);
+            else if (c2->densidade < c1->densidade) printf("%s vence (menor densidade)\n", c2->codigo);
+            else printf("Empate\n");
+
+            printf("PIB per capita: ");
+            if (c1->pibPerCapita > c2->pibPerCapita) printf("%s vence\n", c1->codigo);
+            else if (c2->pibPerCapita > c1->pibPerCapita) printf("%s vence\n", c2->codigo);
+            else printf("Empate\n");
+
+            printf("Super Poder: ");
+            if (c1->superPoder > c2->superPoder) printf("%s vence\n", c1->codigo);
+            else if (c2->superPoder > c1->superPoder) printf("%s vence\n", c2->codigo);
+            else printf("Empate\n");
+
+        } else {
+            printf("Uma ou ambas as cidades nao foram encontradas.\n");
+        }
+    }
+
+    return 0;
+}
+
+    return 0;
+}
