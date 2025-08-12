@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+int main() {
+    
+    int populacao1, pontosTuristicos1;
+    float area1, pib1;
+
+
+    int populacao2, pontosTuristicos2;
+    float area2, pib2;
+
+  
+    printf("Digite os dados da carta 1:\n");
+
+    printf("População: ");
+    scanf("%d", &populacao1);
+
+    printf("Área: ");
+    scanf("%f", &area1);
+
+    printf("PIB: ");
+    scanf("%f", &pib1);
+
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &pontosTuristicos1);
+
+   
+    printf("\nDigite os dados da carta 2:\n");
+
+    printf("População: ");
+    scanf("%d", &populacao2);
+
+    printf("Área: ");
+    scanf("%f", &area2);
+
+    printf("PIB: ");
+    scanf("%f", &pib2);
+
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &pontosTuristicos2);
+
+    printf("\n--- Dados da Carta 1 ---\n");
+    printf("População: %d\n", populacao1);
+    printf("Área: %.2f\n", area1);
+    printf("PIB: %.2f\n", pib1);
+    printf("Número de pontos turísticos: %d\n", pontosTuristicos1);
+
+  
+    printf("\n--- Dados da Carta 2 ---\n");
+    printf("População: %d\n", populacao2);
+    printf("Área: %.2f\n", area2);
+    printf("PIB: %.2f\n", pib2);
+    printf("Número de pontos turísticos: %d\n", pontosTuristicos2);
+
+    return 0;
+}
