@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+#define NUM_ESTADOS 8   // De A a H
+#define NUM_CIDADES 4   // De 1 a 4 por estado
+
+// Estrutura para armazenar os dados de uma cidade
+typedef struct {
+    int populacao;
+    float area;
+    float pib;
+    int pontos_turisticos;
+} Cidade;
+
+// Função para cadastrar as cidades de cada estado
+void cadastrar_cidade(char estado, int cidade_num, Cidade* cidade) {
+    printf("Cadastro da cidade %c%02d:\n", estado, cidade_num);
+    printf("População: ");
+    scanf("%d", &cidade->populacao);
+    printf("Área (em km²): ");
+    scanf("%f", &cidade->area);
+    printf("PIB (em bilhões): ");
+    scanf("%f", &cidade->pib);
+    printf("Número de pontos turísticos: ");
+    scanf("%d", &cidade->pontos_turisticos);
+    printf("\n");
+}
+
+// Função para exibir os dados da cidade cadastrada
+void exibir_dados_cidade(char estado, int cidade_num, Cidade cidade) {
+    printf("Cidade %c%02d:\n", estado, cidade_num);
+    printf("População: %d\n", cidade.populacao);
+    printf("Área: %.2f km²\n", cidade.area);
+    printf("PIB: %.2f bilhões\n", cidade.pib);
+    printf("Pontos turísticos: %d\n", cidade.pontos_turisticos);
+    printf("\n");
+}
+
+int main() {
+    // Array para armazenar as cidades de cada estado
+    Cidade cidades[NUM_ESTADOS][NUM_CIDADES];
+
+    // Loop para cadastrar as cidades de cada estado
+    for (char estado = 'A'; estado <= 'H'; estado++) {
+        for (int cidade_num = 1; cidade_num <= 4; cidade_num++) {
+            cadastrar_cidade(estado, cidade_num, &cidades[estado - 'A'][cidade_num - 1]);
+        }
+    }
+
+    // Exibir os dados cadastrados das cidades
+    printf("\nDados das cidades cadastradas:\n");
+    for (char estado = 'A'; estado <= 'H'; estado++) {
+        for (int cidade_num = 1; cidade_num <= 4; cidade_num++) {
+            exibir_dados_cidade(estado, cidade_num, cidades[estado - 'A'][cidade_num - 1]);
+        }
+    }
+
+    return 0;
+}
+
