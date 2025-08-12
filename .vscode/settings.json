@@ -1,0 +1,8 @@
+{
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ],
+    "files.associations": {
+        "stdio.h": "c"
+    }
+}
