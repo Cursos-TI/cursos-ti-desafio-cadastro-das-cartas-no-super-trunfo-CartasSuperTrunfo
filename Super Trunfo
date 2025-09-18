@@ -1,0 +1,104 @@
+#include <stdio.h>
+
+int main() {
+    // Variáveis da Carta1
+    char nome1[50];
+    char estado1[50];
+    char codigo1[10]; 
+    char cidade1[50];
+    int populacao1;
+    float area1; 
+    float pib1;
+    int pontos_turisticos1;
+
+    // Variáveis da Carta2
+    char nome2[50];
+    char estado2[50];
+    char codigo2[10]; 
+    char cidade2[50];
+    int populacao2;
+    float area2; 
+    float pib2;
+    int pontos_turisticos2;
+
+    // --- Entrada Carta1 ---
+    printf("\n=== Carta1 ===\n");
+
+    printf("Digite o nome: ");
+    scanf("%49s", nome1);
+
+    printf("Digite o nome do Estado: ");
+    scanf("%49s", estado1);
+
+    printf("Digite o codigo da Carta: ");
+    scanf("%9s", codigo1);
+
+    printf("Digite o nome da Cidade: ");
+    scanf("%49s", cidade1);
+
+    printf("Digite a populacao: ");
+    scanf("%d", &populacao1);
+
+    printf("Digite a area em km²: ");
+    scanf("%f", &area1);
+
+    printf("Digite o PIB: ");
+    scanf("%f", &pib1);
+
+    printf("Digite o numero de pontos turisticos: ");
+    scanf("%d", &pontos_turisticos1);
+
+
+    // --- Entrada Carta2 ---
+    printf("\n=== Carta2 ===\n");
+
+    printf("Digite o nome: ");
+    scanf("%49s", nome2);
+
+    printf("Digite o nome do Estado: ");
+    scanf("%49s", estado2);
+
+    printf("Digite o codigo da Carta: ");
+    scanf("%9s", codigo2);
+
+    printf("Digite o nome da Cidade: ");
+    scanf("%49s", cidade2);
+
+    printf("Digite a populacao: ");
+    scanf("%d", &populacao2);
+
+    printf("Digite a area em km²: ");
+    scanf("%f", &area2);
+
+    printf("Digite o PIB: ");
+    scanf("%f", &pib2);
+
+    printf("Digite o numero de pontos turisticos: ");
+    scanf("%d", &pontos_turisticos2);
+
+
+    // --- Saída Carta1 ---
+    printf("\n=== Dados da Carta1 ===\n");
+    printf("Nome: %s\n", nome1);
+    printf("Estado: %s\n", estado1);
+    printf("Codigo da Carta: %s\n", codigo1);
+    printf("Cidade: %s\n", cidade1);
+    printf("Populacao: %d\n", populacao1);
+    printf("Area: %.2f km²\n", area1);
+    printf("PIB: %.2f\n", pib1);
+    printf("Pontos Turisticos: %d\n", pontos_turisticos1);
+
+    // --- Saída Carta2 ---
+    printf("\n=== Dados da Carta2 ===\n");
+    printf("Nome: %s\n", nome2);
+    printf("Estado: %s\n", estado2);
+    printf("Codigo da Carta: %s\n", codigo2);
+    printf("Cidade: %s\n", cidade2);
+    printf("Populacao: %d\n", populacao2);
+    printf("Area: %.2f km²\n", area2);
+    printf("PIB: %.2f\n", pib2);
+    printf("Pontos Turisticos: %d\n", pontos_turisticos2);
+
+    return 0;
+}
+https://cuddly-meme-7v4jxvxgg9w9hwxgg.github.dev/
