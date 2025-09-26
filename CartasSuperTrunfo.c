@@ -7,6 +7,9 @@
 //Teste larissa
 
 int main() {
+
+    printf("Desafio Super Trunfo - Países");
+    printf("\nTema 1 - Cadastro das Cartas\n\n");
     // Sugestão: Defina variáveis separadas para cada atributo da cidade.
     // Exemplos de atributos: código da cidade, nome, população, área, PIB, número de pontos turísticos.
     
